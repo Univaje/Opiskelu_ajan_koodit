@@ -49,6 +49,8 @@ public class TRAI_21_t29_sampokaj<E> implements TRAI_21_X7<E>,Iterable<E>
      * @return poistettu jonossa pisimpään ollut alkio.
      * @throws NoSuchElementException jollei jonossa ole yhtään alkiota.
      */
+
+    
     @Override
     public E poista() {
         if (onkoTyhja())
