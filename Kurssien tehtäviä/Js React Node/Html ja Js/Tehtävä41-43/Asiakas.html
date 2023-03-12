@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asiakastietopalvelu</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       
+        $(document).ready(function () {
+
+            // TEHTÄVÄT 41 ja 42
+
+            //Haetaan asiakastyypit ja sen perusteella tulee taulukkoon asiakastyyppi tioeto
+            var customertypes = [];
+            $.get("http://animalhospital.freemyip.com/customerbase/Types", function (data, status) {
+                customertypes = data;
+                console.log(customertypes);
+                var addTypes = "";
+                for (var type of customertypes) {
+                    addTypes += "<option value="+type.customertypeid+">" + type.description + "</option>";
+                }
+                $("#Atyypit").append(addTypes);
+                console.log($("#Atyypit").val());
+            });
+            $("#FetchSelected").click(function () {
+                $("#tableBody").empty(); // tyhjätään taulukon sisältö ennen kuin haetaan tiedot   
+                $.get("http://animalhospital.freemyip.com/customerbase/Customer?"+$("#etsinta").serialize()+"&customertype="+$("#Atyypit").val(),
+                
+                    function (data, status) {
+                        console.log(data);
+                        data.map((customer) => {
+                            var addStr = "";
+                            for (var key of Object.keys(customer)) { //sattuu sopivasti tulemaan tiedot oikeassa järjestyksessä
+                                if (key == "customertype") {
+                                    for (var type of customertypes)
+                                        if (type.customertypeid == customer[key]) // eli taulussa: customer.customertype == customertypes.customertypeis
+                                            addStr += "<td>" + type.description + "</td>";
+                                }
+                                else
+                                    addStr += "<td>" + customer[key] + "</td>";
+                            }
+                            $("#tableBody").append("<tr>" + addStr + "</tr>");
+                        })
+                    }).fail((jqXHR) => {
+                        console.log(jqXHR);
+                    })
+                })
+        
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <!--jQuery UI CSS, tarvitaan ulkoasuja varten-->
+    <link rel="stylesheet" href="./jQuery UI Accordion - Default functionality_files/jquery-ui.css">
+    <!--jQuery, täällä on jQueryn toiminnallisuus-->
+    <script src="./jQuery UI Accordion - Default functionality_files/jquery-3.6.0.js.lataus"></script>
+    <!--jQuery UI, tarvitaan käyttöliittymäkomponentteja varten-->
+    <script src="./jQuery UI Accordion - Default functionality_files/jquery-ui.js.lataus"></script>
+    <script>
+        $(function () { 
+            var dialog, form,
+                Aname = $("#nimi"),
+                Aaddress = $("#Aosoite"),
+                Apostalnumber = $("#Apostinro"),
+                Apostaloffice = $("#Aptp"),
+                AAsiakastyyppi = $("#Atyyppi"),
+                allFields = $([]).add(name).add(Aaddress).add(Apostalnumber).add(Apostaloffice).add(AAsiakastyyppi),
+                tips = $(".validateTips");
+
+            function updateTips(t) {
+                tips
+                    .text(t)
+                    .addClass("ui-state-highlight");
+                setTimeout(function () {
+                    tips.removeClass("ui-state-highlight", 1500);
+                }, 500);
+            }
+
+            function checkLength(o, n, min) {
+                console.log(o);
+                if (o.val().length < min) {
+                    o.addClass("ui-state-error");
+                    updateTips("Pituuden on oltava vähintään " + min + " pitkä.");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+
+
+            function addUser() {
+                var valid = true;
+                allFields.removeClass("ui-state-error");
+
+                valid = valid && checkLength(Aname, "name", 2);
+                valid = valid && checkLength(Aaddress, "address", 2);
+                valid = valid && checkLength(Apostalnumber, "postalnumber", 1);
+                valid = valid && checkLength(Apostaloffice, "postaloffice", 1);
+                valid = valid && checkLength(AAsiakastyyppi, "Asiakastyyppi", 0);
+
+               
+                if (valid) {
+                    // post-metodilla lähetetään tietoa palvelimelle
+                        $.post("http://animalhospital.freemyip.com/customerbase/Customer", // url
+                        { // lähetettävä objekti
+                        name : Aname.val(),
+                        address : Aaddress.val(),
+                        postalnumber : Apostalnumber.val(),
+                        postaloffice : Apostaloffice.val(),
+                        customertype : AAsiakastyyppi.val()
+
+                        }, 
+                        function(data, status, xhr){ 
+                        console.log(xhr);  // onnistunut pyyntö
+                        }).fail(function(xhr){
+                        console.log(xhr) // epäonnistunut pyyntö
+                        })
+
+                    dialog.dialog("close");
+                    $("#FetchSelected").click();
+
+                }
+                return valid;
+            }
+
+            dialog = $("#dialog-form").dialog({
+                autoOpen: false,
+                height: 400,
+                width: 450,
+                modal: true,
+                buttons: {
+                    "Save": addUser,
+                    Cancel: function () {
+                        dialog.dialog("close");
+                    }
+                },
+                close: function () {
+                    form[0].reset();
+                    allFields.removeClass("ui-state-error");
+                }
+            });
+            form = dialog.find("form").on("submit", function (event) {
+                event.preventDefault();
+                addUser();
+            });
+            $("#Rekisteroidu").click(function(){
+                dialog.dialog("open");
+            });
+        });
+    </script>
+
+    <h1></h1>
+    <p id="Userinfo"></p>
+    <button id="Rekisteroidu">Rekisteröidy</button>
+    <div id="dialog-form" title="Login information">
+        <form>
+            <fieldset>    
+                Name <input type="text" name="name" id="nimi" value="Kalle Kala"class="text ui-widget-content ui-corner-all"><br>
+                Osoite <input type="text" name="address" id="Aosoite" value="Kalatie 2" class="text ui-widget-content ui-corner-all"><br>
+                Postinumero <input type="text" name="postalnumber" id="Apostinro" value="06570"class="text ui-widget-content ui-corner-all"><br>
+                Postintoimipaikka <input type="text" name="postaloffice" id="Aptp" value="Lettutieteenvihtori" class="text ui-widget-content ui-corner-all"><br>
+                Asiakastyyppi <input type="text" name="Asiakastyyppi" id="Atyyppi" value="1"class="text ui-widget-content ui-corner-all"><br>
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+        <p class="validateTips">Login information</p>
+    </div>
+
+    <fieldset>
+        <form id="etsinta" action="">
+            <legend>Hakuehdot:</legend>
+            Nimi : <input type="text" name="name" id="Animi"><br>
+            Osoite : <input type="text" name="address" id="Aosoite"><br>
+            Postinumero : <input type="text" name="postalnumber" id="Apostinro"><br>
+            Postintoimipaikka : <input type="text" name="postaloffice" id="Aptp"><br>
+            Asiakastyyppi : <select id="Atyypit"></select><br>
+    </fieldset>
+    </form>
+    <button id="FetchSelected">PAENA!</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nimi</th>
+                <th>Osoite</th>
+                <th>Postinumero</th>
+                <th>postitoimipaikka</th>
+                <th>Luontipäivä</th>
+                <th>Asiakastyyppi</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Tänne syötetään tiedot palvelimelta-->
+
+        </tbody>
+    </table>
+</body>
+
+</html>

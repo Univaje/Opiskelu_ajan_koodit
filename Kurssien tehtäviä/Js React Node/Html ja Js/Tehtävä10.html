@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <title>Form esimerkki</title>
+    <style>
+        #kuva:hover{
+             box-shadow: inset 0 0 30px hotpink;
+        }
+        table {
+            border:2px solid black;
+            padding: 5px 10px;
+            max-width: 600px;
+        }
+        input,select {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        input[type=text],input[type=password],select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="reset"] {
+           
+            background-color: rgba(15, 13, 13, 0.911);
+            color: rgb(255, 255, 255);
+            border: none;
+            padding: 15px 30px;
+
+            cursor: pointer;
+        }
+
+        input[type=radio],input[type=checkbox] {
+            cursor: pointer;
+        }
+
+        label[for="checkbox1"],label[for="checkbox1"] {
+            cursor: pointer;
+        }
+
+        .radio>label:hover {
+            cursor: pointer;
+        }
+        #napit
+        {
+            display: flex;
+            justify-content: center;
+        }
+        td{
+            width: 50%;
+        }
+    </style>
+</head>
+        <!--
+        10. Muuta edellistä tehtävää niin että ”perinteinen” lähetä-nappi 
+        on korvattu napilla, jossa on joku kuva. 
+
+
+        ---->
+<body>
+    
+    <form action="http://animalhospital.freemyip.com/test.php" method="GET" target="_blank">
+    <table>
+            <h1>Kotitehtävä 10</h1>
+        <tr>
+            <th colspan="2"><div><legend>Perustiedot</legend></div></th> 
+        </tr>
+        <tr>
+            <td><label for="nimi"required>Nimi</label></td>
+            <td><input type="password" id="salasana" name="salasana"></td>   
+        </tr>
+        <tr>
+            <td><label for="salasana">Salasana</label></td>
+            <td><input type="text" id="nimi" name="nimi" required ></td>
+        </tr>
+        <tr>
+            <td>
+                <label for="kurssivalikko">Oppilaitos</label>
+            </td>
+            <td>
+                <select name="kurssivalikko" id="kurssivalikko" disabled>
+
+                    <option  value="Savonia"selected>Savonia AMK</option>
+                    <option id="vittu valita" value="Haaga-helia">Haaga helia</option>
+                    <option value="LAMK" >Lahden Ammattikorkeakoulu</option>
+               
+                </select>
+            </td>
+        </tr>
+        <tr>
+            
+            <td>
+                <label for="kurssivalikko">Kurssi</label>
+            </td>
+            <td>
+                <select name="kurssivalikko" id="kurssivalikko" multiple>
+                <optgroup label="Dataus">
+                    <option value="WO">Web-ohjelmointi</option>
+                    <option value="TRA">Tietorakenteet ja algoritmit</option>
+                </optgroup>
+                <optgroup label="matemaattiset">
+                    <option value="Mtk2" >Matematiikka 2</option>
+                </optgroup>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="kurssivalinta">Kurssi tyyppi</label></td>
+            <td>
+                <select name="kurssivalinta" id="kurssivalinta"required>
+                    <option value="Eta">Etätunnit</option>
+                    <option value="Lahi">Lahitunnit</option>
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2">
+                <fieldset class="radio">
+                    <legend>Sukupuoli</legend>
+                    <div class="radio">
+                        <input type="radio" name="sukupuoli" value="Mies" id="Mies">                        
+                        <label for="Mies">Mies</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="sukupuoli" value="Nainen" id="Nainen">
+                        <label for="Nainen">Nainen</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="sukupuoli" value="Muu" id="Muu">
+                        <label for="Muu">Muu</label>
+                    </div>
+                </fieldset>
+            </td>
+        </tr>
+    <tr>
+        <tr>
+            <td colspan="2">
+                <fieldset>
+                    <legend>Harrastus</legend>
+                    <input type="checkbox" id="hobbies1" name="hobbies_Koodaus">
+                    <label for="hobbies1">Koodaus</label><br>
+                    <input type="checkbox" id="hobbies2" name="hobbies_Tanssi">
+                    <label for="hobbies2" >Tanssi</label><br>
+                    <input type="checkbox" id="hobbies1" name="hobbies_Apinointi" checked>
+                    <label for="hobbies1">Apinointi</label><br>
+                    <input type="checkbox" id="hobbies2" name="hobbies_SuunSoitto">
+                    <label for="hobbies2" >Suun soitto</label><br>
+                </fieldset>
+            </td>
+            <td></td>
+        </tr>
+    <tr>
+        <td colspan="2">
+            <div id="napit" >
+                <input type="image" src="http://users.jyu.fi/~viveilbe/wwwharkka/omakuva.jpg" alt="Submit" style=" width: 50px; border-radius:50%; border: 1px pink solid;" Value="" id="kuva">
+                <input type="reset" value="Tyhjennä">
+            </div>
+        </td>
+    </tr>   
+    </table>
+    </form>
+</body>
+
+</html>

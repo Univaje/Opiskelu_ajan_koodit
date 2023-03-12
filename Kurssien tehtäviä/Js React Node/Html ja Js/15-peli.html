@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var tyhja = "44";
+        var index = 0;
+        var arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        for (let i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var siirto = arr[i];
+            arr[i] = arr[j];
+            arr[j] = siirto;
+        }
+
+        $(document).ready(function () {
+           
+            for (let i = 1; i < 5; i++) {
+                for (let j = 1; j < 5; j++) {
+                    let divid= i+""+j;
+                    if (divid != "44")
+                    $("#"+divid).append((arr[index]));
+                   index++;
+                if ((arr[index]) <= 4 || (arr[index]) >= 9 && (arr[index]) <= 12)
+                    $("#"+divid).css('background-color', 'red');
+                else{
+                    $("#"+divid).css('background-color', 'white');
+                    $("#"+divid).css('color', 'black');
+                 }
+                };
+            }
+            
+            $("div").click(function(event){
+                if (this.id == tyhja){
+                    alert("nononononononono!!!!! :(");    
+                }
+                else {
+                    let numero = parseInt( this.id);
+                    if(Math.abs(event.target.id-tyhja) ==10 || Math.abs(event.target.id -tyhja) ==1){
+                    $("#" + tyhja).text($("#" + this.id).text());
+                    $("#" + this.id).text("");
+                    tyhja = this.id;
+                }
+                else{
+                    alert("No clickityclick!")
+                }
+            }
+            });    
+            $("button").click(function(){
+                location.reload();
+            });  
+        });
+    </script>
+    <title>15-peli</title>
+    <style>
+        div {
+            background:black;
+            height:100px;
+            width:100px;
+            position:absolute;
+            color: white;
+            text-align: center;
+            font-size: xx-large;
+            border:yellow solid 1px;
+        }
+    </style>
+</head>
+<body>
+    <div id ="11" style="top:0px;left:0px"></div>
+    <div id ="12" style="top:0px;left:100px"></div>
+    <div id ="13" style="top:0px;left:200px"></div>
+    <div id ="14" style="top:0px;left:300px"></div>
+    <div id ="21" style="top:100px;left:0px"></div>
+    <div id ="22" style="top:100px;left:100px"></div>
+    <div id ="23" style="top:100px;left:200px"></div>
+    <div id ="24" style="top:100px;left:300px"></div>
+    <div id ="31" style="top:200px;left:0px"></div>
+    <div id ="32" style="top:200px;left:100px"></div>
+    <div id ="33" style="top:200px;left:200px"></div>
+    <div id ="34" style="top:200px;left:300px"></div>
+    <div id ="41" style="top:300px;left:0px"></div>
+    <div id ="42" style="top:300px;left:100px"></div>
+    <div id ="43" style="top:300px;left:200px"></div>
+    <div id ="44" style="top:300px;left:300px"></div>
+    <button style="clear: both; margin: 50%;">Yritä uudelleen</button>
+</body>
+</html>

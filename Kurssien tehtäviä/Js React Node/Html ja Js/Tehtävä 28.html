@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 1</title>
+</head>
+
+<body>
+  <div>
+      <h1>Artikkeleita</h1>
+        <a id="vililinkki" href="https://www.w3schools.com/jsref/event_preventdefault.asp">Ville</a>
+        <a id="samilinkki" href="https://www.w3schools.com/jsref/event_preventdefault.asp">Sami</a>
+        <a id="akulinkki" href="https://www.w3schools.com/jsref/event_preventdefault.asp">Aku</a>
+        <a id="iineslinkki" href="https://www.w3schools.com/jsref/event_preventdefault.asp">Iines</a>
+    
+    <article id="vili" style="visibility: hidden">
+        <h2>Villen juttuja</h2>
+        <p>tähänpä kuuluu villen kuva</p>
+    </article>
+
+    <article id="sami" style="visibility: hidden">
+        <h2>Samin juttuja</h2>
+        <p>tähänpä kuuluu samin tiedot</p>
+    </article>
+
+    <article id ="aku" style="visibility: hidden">
+        <h2>Akun juttuja</h2>
+        <p>tähänpä kuuluu akun akanat</p>
+    </article>
+
+    <article id="iines" style="visibility: hidden">
+        <h2>Iineksen juttuja</h2>
+        <p>tähänpä kuuluu kaikkea turhaa</p>
+    </article>
+
+</div>
+  <script>
+    /*
+    28. Tee html-sivu, jolla on 4 artikkelia (article-elementti). 
+    Toteuta logiikka, jossa vain yksi artikkeli kerrallaan voi olla näkyvissä.
+    Artikkelit saa näkyviin klikkaamalla linkkiä (eli sivulla on 4 eri linkkiä,
+    yksi jokaista artikkelia varten).
+    */
+   var arr = ["vili","sami","aku","iines"];
+    document.getElementById("vililinkki").addEventListener("click",(event)=>{
+        event.preventDefault();
+        let str = "vili";
+        setVisible(str);
+    })
+    document.getElementById("samilinkki").addEventListener("click",(event)=>{
+        event.preventDefault();
+        let str = "sami";
+        setVisible(str);
+    })
+    document.getElementById("akulinkki").addEventListener("click",(event)=>{
+        event.preventDefault();
+        let str = "aku";
+        setVisible(str);
+    })
+    document.getElementById("iineslinkki").addEventListener("click",(event)=>{
+        event.preventDefault();
+        let str = "iines";
+        setVisible(str);
+    })
+
+    function setVisible(str){
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == str)
+                document.getElementById(str).style.visibility ="visible";
+            else
+            document.getElementById(arr[i]).style.visibility ="hidden";
+        }
+    }
+  </script>
+
+</body>
+
+</html>

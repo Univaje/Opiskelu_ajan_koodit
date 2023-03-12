@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)https://moodle.savonia.fi/pluginfile.php/1629019/mod_resource/content/1/Asiakas_20211210.html -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asiakastietokanta</title>
+    <!--jQuery UI CSS CDN -->
+    <link href="./Asiakastietokanta_files/jquery-ui.css" rel="stylesheet">
+    <!-- basic jQuery is also required to run jQuery UI and it has to be before UI-library -->
+    <script src="./Asiakastietokanta_files/jquery-3.5.1.js.lataus"></script>
+    <!--jQuery UI script CDN -->
+    <script src="./Asiakastietokanta_files/jquery-ui.js.lataus"></script>
+    <script>
+        var IIDEE = 0;
+        var custTypes = {};
+        var dialog, form;
+        function deleteCustomer(id) {
+            // tärkeä huomata se, että täältä ei voi kutsua funktioita ready:n sisältä
+            // lisää $.ajax jquery_ajax_delete.html:stä
+            $.ajax({
+                type: "DELETE", // metodi eli get, post, delete, put jne...
+                url: "http://animalhospital.freemyip.com/customerbase/Customer/" + id, // poistetaan id 417
+                success: function (result) {
+                    console.log(result);
+                    searchCustomerData();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+
+        }
+
+        function updateCustomer() {
+            $.ajax({
+                type: "PUT", // PUT metodia käytetään tietojen päivittämiseen.
+                url: "http://animalhospital.freemyip.com/customerbase/Customer/" + IIDEE,
+                data: {
+                    name: $("#newCustomerName").val(),
+                    address: $("#newCustomerAddress").val(),
+                    postalnumber: $("#newCustomerPostalnumber").val(),
+                    postaloffice: $("#newCustomerPostaloffice").val(),
+                    customertype: $('#newCustomerType').find(":selected").val()
+                },
+                success: function (result) {
+                    console.log(result);
+                    form[0].reset();
+                    dialog.dialog("close");
+                    IIDEE = 0;
+                    searchCustomerData();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+            
+
+        }
+        function OpenDialog() {
+            dialog.dialog("open");
+        }
+        function searchCustomerData() {
+            $("#tabledata").empty();
+            $.get("http://animalhospital.freemyip.com/customerbase/Customer?" + $("#searchForm").serialize(), // hakee formin tiedot hakua varten
+                function (data, status, xhr) {
+                    if (status == "success") {
+                        data.map((x) => {
+                            var addStr = "";
+                            for (key of Object.keys(x))
+                                if (key == "customertype") {
+                                    var found = false;
+                                    for (custType of custTypes) {
+                                        if (custType.customertypeid == x[key]) {
+                                            found = true;
+                                            addStr += "<td>" + custType.description + "</td>"
+                                        }
+                                    }
+                                    if (!found)
+                                        addStr += "<td></td>";
+                                }
+                                else if (key != "customerid")
+                                    addStr += "<td>" + x[key] + "</td>";
+                            addStr += "<td><button id='" + x.customerid + "' onclick='deleteCustomer(" + x.customerid + ")'>Poista</button></td>";
+                            addStr += "<td><button onclick='editCustomer(" + x.customerid + ")'>Muokkaa</button></td>"
+                            $("#tabledata").append("<tr>" + addStr + "</tr>");
+                        })
+                    }
+                });
+        }
+        function autoComp() {
+
+            $.get("http://animalhospital.freemyip.com/customerbase/Customer", function (data, status) {
+                let toimipaikat = new Set();
+                let postinumerot = new Set();
+                for (let x of data) {
+                    toimipaikat.add(x.postaloffice);
+                    postinumerot.add(x.postalnumber);
+                }
+                var nimet = Array.from(toimipaikat);
+                var numerot = Array.from(postinumerot);
+                $("#postalnumber").autocomplete({
+
+                    source: numerot
+                });
+                $("#postaloffice").autocomplete({
+
+                    source: nimet
+                });
+                console.log(nimet);
+
+
+            }).fail((jqXHR) => {
+                console.log(jqXHR);
+            })
+
+
+
+        }
+        function editCustomer(id) {
+            IIDEE = id;
+            OpenDialog();
+            // haetaan muokattavan asiakkan tiedot formiin
+            $.get("http://animalhospital.freemyip.com/customerbase/Customer/" + id,
+                function (data, status, xhr) {
+                    for (let x of data) {
+                        $("#newCustomerName").val(x.name);
+                        $("#newCustomerAddress").val(x.address);
+                        $("#newCustomerPostalnumber").val(x.postalnumber);
+                        $("#newCustomerPostaloffice").val(x.postaloffice);
+                        $('#newCustomerType').val(x.customertype);
+                    }
+                }).fail(function (xhr) {
+                    alert("virhe taustapalveluissa");
+                    console.log(xhr.responseJSON);
+                });
+            $('#dialog-form').on('Tallenna', function () {
+                alert("!")
+            })
+
+            // formissa muokataan tietoja
+            // kutsutaan put-metodilla palvelua
+            // päivitetään tiedot taulukkoon
+            //searchCustomerData();
+
+        }
+
+        function addCustomer() {
+            $.post("http://animalhospital.freemyip.com/customerbase/Customer/", {
+                name: $("#newCustomerName").val(),
+                address: $("#newCustomerAddress").val(),
+                postalnumber: $("#newCustomerPostalnumber").val(),
+                postaloffice: $("#newCustomerPostaloffice").val(),
+                customertype: $('#newCustomerType').find(":selected").val()
+            }, function (data, status, xhr) {
+                // successful post request go here
+                console.log(xhr);
+                form[0].reset();
+                dialog.dialog("close");
+                searchCustomerData();
+                $("#addingNotifications").removeClass("ui-state-error");
+                $("#addingNotifications").html("Kaikki kentät ovat pakollisia.")
+            }).fail(function (xhr) {
+                // if there's a failure, this is where it goes
+                $("#addingNotifications").addClass("ui-state-error");
+                $("#addingNotifications").html(xhr.responseJSON.error)
+                console.log(xhr.responseJSON);
+            })
+            
+        }
+        $(document).ready(function () {
+
+            autoComp();
+            // asiakastyypit haetaan täällä
+            $.get("http://animalhospital.freemyip.com/customerbase/Types", function (data, status) {
+                if (status == "success") {
+                    custTypes = data;
+                    data.forEach((r) => {
+                        let optstr = `<option value="${r.customertypeid}">${r.abbreviation + " " + r.description}</option>`;
+                        $('.custType').append(optstr);
+                    });
+                }
+            }).fail(function (xhr) {
+                alert("virhe taustapalveluissa");
+                console.log(xhr.responseJSON);
+            });
+
+            $("#search").click(function () {
+                searchCustomerData();
+            });
+            dialog = $("#dialog-form").dialog({
+                autoOpen: false,
+                height: 600,
+                width: 350,
+                modal: true,
+                buttons: {
+                    Tallenna: function () { 
+                        if (IIDEE == 0 ){
+                            addCustomer();
+                        }
+                        else{
+                            updateCustomer();
+                        }
+                     },
+                    Cancel: function () {
+                        dialog.dialog("close");
+                    }
+                },
+
+                close: function () {
+                    form[0].reset();
+                }
+            });
+
+            form = dialog.find("form").on("submit", function (event) {
+                event.preventDefault(); // prevents loading the page from server
+                if ( IIDEE == 0)
+                    addCustomer();
+                else
+                    updateCustomer();
+            });
+
+            $("#add-customer").click(function () {
+                dialog.dialog("open");
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <h1>Asiakaskanta</h1>
+    <fieldset>
+        <legend>Hae</legend>
+        <form id="searchForm">
+            <label for="name">Nimi</label><br>
+            <input type="text" name="name" id="name"><br>
+            <label for="address">Osoite</label><br>
+            <input type="text" name="address" id="address"><br>
+            <label for="postalnumber">Postinumero</label><br>
+            <input type="text" name="postalnumber" id="postalnumber"><br>
+            <label for="postaloffice">Postitoimipaikka </label><br>
+            <input type="text" name="postaloffice" id="postaloffice"><br>
+            <label for="customertype">Asiakastyyppi </label><br>
+            <select name="customertype" class="custType" id="customertype">
+                <option value="" selected="">Valitse.. </option>
+            </select><br>
+
+        </form>
+        <br><button id="search">Hae asiakkaita</button><br>
+    </fieldset>
+    <br><button id="add-customer">Lisää uusi asiakas</button><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nimi</th>
+                <th>Osoite</th>
+                <th>Postinumero</th>
+                <th>Postitoimipaikka</th>
+                <th>Luontipäivä</th>
+                <th>Asiakastyyppi</th>
+                <th>Poista</th>
+                <th>Muokkaa</th>
+            </tr>
+        </thead>
+        <tbody id="tabledata">
+
+        </tbody>
+    </table>
+
+
+
+    <div tabindex="-1" role="dialog"
+        class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable ui-resizable"
+        aria-describedby="dialog-form" aria-labelledby="ui-id-1" style="display: none; position: absolute;">
+        <div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span
+                id="ui-id-1" class="ui-dialog-title">Addnewcustomer</span><button type="button"
+                class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close"
+                title="Close"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span
+                    class="ui-button-icon-space"> </span>Close</button></div>
+        <div id="dialog-form" class="ui-dialog-content ui-widget-content">
+            <p class="validateTips" id="addingNotifications">Kaikki kentät ovat pakollisia.</p>
+
+            <form>
+                <fieldset>
+                    <label for="newCustomerName">Nimi</label><br>
+                    <input type="text" name="name" id="newCustomerName"><br>
+                    <label for="newCustomerAddress">Osoite</label><br>
+                    <input type="text" name="address" id="newCustomerAddress"><br>
+                    <label for="newCustomerPostalnumber">Postinumero</label><br>
+                    <input type="text" name="postalnumber" id="newCustomerPostalnumber"><br>
+                    <label for="newCustomerPostaloffice">Postitoimipaikka</label><br>
+                    <input type="text" name="postaloffice" id="newCustomerPostaloffice"><br>
+                    <label for="newCustomerType">Asiakastyyppi </label><br>
+                    <select name="customertype" class="custType" id="newCustomerType">
+                        <option value="" selected="" disabled="">Valitse..</option>
+                    </select><br>
+
+                    <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                </fieldset>
+            </form>
+        </div>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-corner-all ui-widget">Lisää
+                    asiakas</button><button type="button" class="ui-button ui-corner-all ui-widget">Cancel</button>
+            </div>
+        </div>
+        <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;">
+        </div>
+        <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+        <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+    </div>
+</body>
+
+</html>

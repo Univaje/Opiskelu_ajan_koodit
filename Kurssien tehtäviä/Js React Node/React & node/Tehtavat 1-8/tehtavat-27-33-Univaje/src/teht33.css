@@ -1,0 +1,32 @@
+.footer {
+    background-color: #08ffff;
+    padding: 10px;
+}
+.body {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: stretch;
+
+}
+.nav {
+    padding: 5px;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+.header,footer {
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+}
+.aside {
+    flex-basis: 20%;
+    flex-grow: 0;
+    padding: 20px;
+}   
+.main {
+    flex-grow: 3;
+    
+} 

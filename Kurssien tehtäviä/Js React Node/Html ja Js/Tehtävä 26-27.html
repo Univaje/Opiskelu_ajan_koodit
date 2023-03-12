@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 1</title>
+</head>
+
+<body>
+  <div>
+  <form>
+   <fieldset>
+          <legend>Anna nimi ja osoite</legend>
+          <label for="nimi">Nimi</label>
+          <input type="text" id="nimi" >
+          <label for="Osoite">Osoite</label>
+          <input type="text" id="Osoite" >
+        </fieldset>
+  </form>
+  <fieldset>
+    <table id ="taulukko">
+      <th>Nimi</th>
+      <th>Osoite</th>
+    </table>
+  </fieldset>
+
+</div>
+<Button id="nappi" onclick="TiedotTaulukkoon()">Lisää</Button>
+  <script>
+    /*
+    26. Tee html-sivu, jolla käyttäjä voi syöttää nimen ja osoitteen form:lla. 
+    Kun käyttäjä painaa Lisää-nappia, lisätään uusi käyttäjä form:n alapuolella olevaan taulukkoon 
+    (table-elementti) joka on tietty aluksi tyhjä.
+    */
+    function TiedotTaulukkoon(){
+
+       let nimesi =document.getElementById("nimi").value;
+       let osoitteesi = document.getElementById("Osoite").value;
+       if (nimesi && osoitteesi){
+          document.getElementById("nimi").style.backgroundColor = "white";
+          document.getElementById("Osoite").style.backgroundColor = "white";
+          let taulukko = document.getElementById("taulukko");
+          let rivi = taulukko.insertRow(-1);
+          let nimitiedot = rivi.insertCell(0);
+          let data = document.createTextNode(nimesi);
+          let osoitetiedot = rivi.insertCell(1);
+          let data2 = document.createTextNode(osoitteesi);
+          nimitiedot.appendChild(data);
+          osoitetiedot.appendChild(data2);
+       }
+       else{
+        document.getElementById("nimi").style.backgroundColor = "red";
+        document.getElementById("Osoite").style.backgroundColor = "red";
+       }
+       
+    }
+  </script>
+
+</body>
+
+</html>

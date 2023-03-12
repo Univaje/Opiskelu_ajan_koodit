@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 1</title>
+</head>
+
+<body>
+  <p id="muutos">Anna syntymäpäiväsi muodossa (dd.mm.yyyy)</p>
+    <input type="text" id="ika"required value="23.03.1985" >
+    <button id = "tarkista" onclick="tarkista()" >Tarkista</button>
+    <p id ="vuosi"></p>
+  <script>
+    
+    function tarkista(){
+        var teksti = document.getElementById("ika").value;
+        if (teksti){
+            if (kirjaintarkistus(teksti)){ //
+              let pvm = new Date();
+              var arr = teksti.split(".");
+              console.log(arr);
+
+              
+              if (paivamaaratarkistus(arr,pvm)){
+                var spaiva = new Date(arr[2],arr[1]-1,arr[0]);
+                document.getElementById("vuosi").innerHTML = "Ikäsi on " + Math.round((pvm-spaiva)/31104000000);
+              }
+              else{
+                alert("Virheellinen päivämäärä!")
+              }
+            }
+            else
+            alert("Virheellinen muoto!")
+        }
+        else
+        alert("Teksti kenttä tyhjä")
+       
+       
+    }
+    function kirjaintarkistus(teksti){
+        if (teksti.length == 10){
+           let teksti1 = teksti.split('.').join("");
+           for (let i = 0; i < teksti1.length; i++) {
+           const d = teksti1.charCodeAt(i);
+           if (d < 48 || d > 57) 
+              return false;
+           }
+           return true;
+        }
+        return false;
+    }
+    function paivamaaratarkistus(arr, pvm){
+              if (arr[0] > 31 ||arr[0] ==0)
+               return false;
+              if (arr[1] == 0 || arr[1] > 12)
+              return false;
+              if (arr[2] < 1900 || arr[2] > pvm.getFullYear())
+              return false;
+      return true;
+    }
+    /*
+    25. Tee html-sivu, jossa käyttäjä voi syöttää kenttään syntymäaikansa muodossa dd.mm.yyyy. 
+    Kun käyttäjä painaa Tarkista-nappia, ohjelma laskee ja tulostaa henkilön iän vuosina. 
+    Pyöristä ikä lähimpään vuoteen alas- tai ylöspäin.
+
+    Tee syötteestä alla olevat tarkistuksen siitä huolimatta, 
+    että käytitkö inputin tyyppiä date vai text. Tarkista että syötekenttä
+
+    Ei ole tyhjä
+    Sisältää vain numeroita
+    Luvun pituus on oikea
+    Dd on välillä 1-31
+    Mm on välillä 1-12
+    Yyyy on välillä 1900-tämä vuosi
+    HUOM! Ei tarvitse tarkistaa onko pvm validi (ts. 31.02.2018 saa mennä läpi tarkistuksesta). Toki saa sen tarkistaa ...*/
+  </script>
+
+
+  </script>
+
+</body>
+
+</html>

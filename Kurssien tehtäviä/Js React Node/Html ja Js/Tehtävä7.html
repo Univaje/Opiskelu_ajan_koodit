@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <title>Form esimerkki</title>
+    <style>
+        input,
+        select {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        input[type=text],
+        input[type=password],
+        select {
+            /*Atribute selector*/
+            width: 100%;
+            box-sizing: border-box;
+            /*Ottaa huomioon muut elementit*/
+        }
+
+        input[type=text] {
+            background-color: #f2f2f2;
+            background-image: url("suurennuslasi.png");
+            background-repeat: no-repeat;
+            padding-left: 40px;
+            background-position: 0px -3px;
+            /* x-suunta  y-suunta*/
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: rgba(15, 13, 13, 0.911);
+            color: honeydew;
+            border: none;
+            padding: 15px 30px;
+            /* y-suunta x-suunta*/
+            margin: 10px 5px;
+            /* y-suunta x-suunta*/
+            cursor: pointer;
+        }
+
+        input[type=radio],
+        input[type=checkbox] {
+            cursor: pointer;
+        }
+
+        label[for="checkbox1"],
+        label[for="checkbox1"] {
+            cursor: pointer;
+        }
+
+        .radio>label:hover {
+            /*radio luokan lapsen, joka on label*/
+            cursor: pointer;
+        }
+    </style>
+</head>
+        <!--
+        7. Tee sivu, jonne käyttäjä syöttää kurssille ilmoittautumistietoja
+
+        Nimi (text)
+        Vuosikurssi (password)
+        Kurssin nimi (alasvetovalikko)
+        Kurssin tyyppi (alasvetovalikko)
+        Mies/nainen/muu (radiobutton)
+        Harrastukset (checkbox)
+        Keksi itse 4 harrastusta, laita 3. checkbox oletuksena valituksi
+        HUOM! Harrastukset-kenttien name-attribuutti pitää alkaa "hobbies"-sanalla. 
+        Jos muuttujat on nimetty "hobbies", näkyy serverin päässä vain yksi valittu 
+        harrastus ts. muuttujan nimeen pitää liittää jotain, jotta kaikki valinnat näkyvät serverin päässä.
+        Lisää sivulle Lähetä-nappi ja Tyhjennä nappi
+
+        Testaa sivustoa test.php-sovelluksen avulla (lähetä tiedot get-metodilla test.php-sovellukselle)
+        test.php löytyy paikasta http://animalhospital.freemyip.com/test.php. 
+        Ts. laita form:n action-attribuutin arvoksi action="http://animalhospital.freemyip.com/test.php"
+        ja method:ksi get (eli method="get"). VINKKI: HTML Form
+        ---->
+<body>
+    <h1>Kotitehtävät</h1>
+    <p>Tehtävä 7</p>
+    <form action="http://animalhospital.freemyip.com/test.php" method="GET" target="_blank">
+        <!--Oletusmetodi on get, jotta lomakkeen tiedot eivät näkyisi osoiterivillä, voi käyttää post-metodia.
+            target="_blank" määritteellä avautuu uuteen ikkunaan-->
+        <fieldset>
+            <legend>Perustiedot</legend>
+            <label for="nimi">Nimi</label>
+            <input type="text" id="nimi" name="nimi" required value="testi"><br>
+            <label for="salasana">Salasana</label>
+            <input type="password" id="salasana" name="salasana"><br>
+
+            <!--drop-down list-->
+            <label for="kurssivalikko">Kurssi</label>
+            <select name="kurssivalikko" id="kurssivalikko">
+                <option value="WO">Web-ohjelmointi</option>
+                <option value="TRA">Tietorakenteet ja algoritmit</option>
+                <option value="Mtk2" selected>Matematiikka 2</option>
+            </select><br>
+            <label for="kurssivalinta">Kurssi tyyppi</label>
+            <select name="kurssivalinta" id="kurssivalinta">
+                <option value="Eta">Etätunnit</option>
+                <option value="Lahi">Lahitunnit</option>
+            </select><br>
+        </fieldset>
+              <!--Radiobuttonit:-->
+        <fieldset class="radio">
+            <legend>Sukupuoli</legend>
+            <div class="radio">
+                <input type="radio" name="Mies" value="Mies" id="Mies" checked>
+                <label for="Mies">Mies</label><br>
+            </div>
+            <div class="radio">
+                <input type="radio" name="Nainen" value="Nainen" id="Nainen">
+                <label for="Nainen">Nainen</label><br>
+            </div>
+            <div class="radio">
+                <input type="radio" name="Muu" value="Muu" id="Muu">
+                <label for="Muu">Muu</label><br>
+            </div>
+        </fieldset>
+            <!-- Valintalaatikot eli täpät:-->
+            <fieldset>
+            <input type="checkbox" id="hobbies1" name="hobbies_Koodaus">
+            <label for="hobbies1">Koodaus</label><br>
+            <input type="checkbox" id="hobbies2" name="hobbies_Tanssi">
+            <label for="hobbies2" >Tanssi</label><br>
+            <input type="checkbox" id="hobbies1" name="hobbies_Apinointi" checked>
+            <label for="hobbies1">Apinointi</label><br>
+            <input type="checkbox" id="hobbies2" name="hobbies_SuunSoitto">
+            <label for="hobbies2" >Suun soitto</label><br>
+            </fieldset>
+        <input type="submit" Value="Lähetä">
+        <input type="reset" value="Tyhjennä">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+.example {
+    position: relative;
+    top:50px;
+    width: 250px;
+    height:250px;
+    margin: 5px;
+    padding: 10px;
+    text-align: left;
+    
+}
+.Navlinkit:hover{
+    background: black;
+}
+
+.Navlinkit {
+    display: "block";
+    text-Align:"center"; 
+    float:"left"; 
+    height:"50px";
+    width:"100px"; 
+    margin: "1rem 0"; 
+    text-Decoration: "none";
+}

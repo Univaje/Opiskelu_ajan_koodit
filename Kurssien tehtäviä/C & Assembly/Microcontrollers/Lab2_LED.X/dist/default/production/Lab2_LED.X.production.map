@@ -1,0 +1,57 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Thu Feb 10 21:27:04 2022
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000068
+                   .cinit    romdata   0x000068    program   0x000002
+.config_01FFF8_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fff8    program   0x000001
+.config_01FFF9_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fff9    program   0x000001
+.config_01FFFA_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fffa    program   0x000001
+.config_01FFFB_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fffb    program   0x000001
+.config_01FFFC_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fffc    program   0x000001
+.config_01FFFD_BUILD/DEFAULT/PRODUCTION/LAB2_LE    romdata   0x01fffd    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000069      
+                            0x01fff8    0x01fffd      
+            112 out of 131072 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    delay   0x000056    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                  kierros   0x00005c    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                     loop   0x00002e    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                    loop2   0x000046    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+               shift_left   0x000026    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+              shift_right   0x00003e    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                 silmukka   0x00005a    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                    start   0x000004    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+          start_loop_left   0x000012    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+         start_loop_right   0x00001c    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    start   0x000004    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+          start_loop_left   0x000012    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+         start_loop_right   0x00001c    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+               shift_left   0x000026    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                     loop   0x00002e    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+              shift_right   0x00003e    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                    loop2   0x000046    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                    delay   0x000056    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                 silmukka   0x00005a    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+                  kierros   0x00005c    program     static C:\Lu\Microcontrollers\Lab2_LED.X\Lab2_LED.asm
+
+

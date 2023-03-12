@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+            /*34. Tee html-sivu, jossa on 3 linkkiä, joita klikkaamalla saa näkyviin näyttöön article-elementin,
+            jossa on jotain tekstiä. Kustakin linkistä saa näkyviin eri article-elementin ja vain valittu article-elementti 
+            on näkyvissä.Article-elementti tulee näkyviin 2sek aikana (siis tulee "hitaasti" näkyviin). 
+            Article-elementti menee piiloon automaattisesti 3sek. kuluttua.*/
+            
+    $(document).ready(function () {
+      $("#fadein1").click(function () { 
+        $(".fadeinfadeout").fadeIn(2000).fadeOut(3000); 
+      });
+      $("#fadein2").click(function () { 
+        $(".fadeinfadeout1").fadeIn(2000).fadeOut(3000); 
+      });
+      $("#fadein3").click(function () {
+        $(".fadeinfadeout2").fadeIn(2000).fadeOut(3000); 
+      });
+    });
+
+  </script>
+</head>
+
+<body>
+    <h1>Artikkeleita</h1>
+    <a id="fadein1" href="#">Ville</a>
+    <a id="fadein2" href="#">Sami</a>
+    <a id="fadein3" href="#">Aku</a>
+  <article class="fadeinfadeout" style="display: none;" >
+    <h2>Villen juttuja</h2>
+    <p>tähänpä kuuluu villen kuva</p>
+  </article>
+  <article class="fadeinfadeout1"style="display: none;"> 
+    <h2>Samin juttuja</h2>
+    <p>tähänpä kuuluu samin tiedot</p>
+  </article>
+  <article class="fadeinfadeout2"style="display: none;">
+    <h2>Akun juttuja</h2>
+    <p>tähänpä kuuluu akun akanat</p>
+  </article>
+</body>
+
+</html>
