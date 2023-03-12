@@ -1,0 +1,38 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<GridPane fx:controller="sample.Controller"
+
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="1" text="Tuotteen tiedot:" fx:id="LblTuote1"/>
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Nimi" fx:id="LblTuote2"/>
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="3" text="Tuotetyyppi:" fx:id="LblTuote3"/>
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="4" text="Käyttöönotto päivä:" fx:id="LblTuote4"/>
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="5" text="Myyntihinta:" fx:id="LblTuote5"/>
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="6" text="Ostajan nimi:" fx:id="LblTuote6"/>
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="tfTuote1"/>
+    <ComboBox GridPane.columnIndex="2" GridPane.rowIndex="3"  fx:id="TfTuote2" promptText="Valitse" >
+    <items>
+        <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Hiiri" />
+            <String fx:value="Näyttö" />
+            <String fx:value="Näppäimistö" />
+        </FXCollections>
+    </items>
+    </ComboBox>
+    <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="4" fx:id="dpTuote3"/>
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" text="" fx:id="tfTuote4"/>
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="6" text="" fx:id="tfTuote5"/>
+    <Button GridPane.columnIndex="2" GridPane.rowIndex="7" text="Tallenna" fx:id="btnTallenna"/>
+    <Button GridPane.columnIndex="3" GridPane.rowIndex="7" text="Poista" fx:id="btnPost" />
+
+</GridPane>

@@ -1,0 +1,21 @@
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe.config
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.pdb
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csprojAssemblyReference.cache
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csproj.CoreCompileInputs.cache
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\source\repos\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.pdb
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csprojAssemblyReference.cache
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csproj.CoreCompileInputs.cache
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.pdb
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe.config
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\OneDrive\Tiedostot\Läksyt\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.pdb
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csprojAssemblyReference.cache
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.csproj.CoreCompileInputs.cache
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\obj\Debug\EkaOhjelma 020920.pdb
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe.config
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.exe
+C:\Users\negro\Documents\Läksyt\Ohjelmointi\Ohjelmointi kurssi 1\EkaOhjelma 020920\EkaOhjelma 020920\bin\Debug\EkaOhjelma 020920.pdb
