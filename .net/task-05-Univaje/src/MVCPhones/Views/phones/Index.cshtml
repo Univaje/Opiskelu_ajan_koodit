@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MVCPhones.Data.Phone>
+
+@{
+    ViewData["Title"] = "Index";
+    /*
+     * 2. A list page (/phones) that lists all the phones from the database in alphabetical order by Make and then by Model fields.
+         Use `ul` element with css class `phones` to list the phones. Each `li` element in the `ul` element contains the phone's
+         make and model as the element's text content and links (`a` element) to edit and delete pages for the current phone.
+         The list page has also a link button (`a` element styled as a button using bootstrap styles) to add page (/phones/add).
+    */
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" href="/phones/add" role="button">add new</a>
+</p>
+<h1>Phones</h1>
+<div>
+    <ul class="phones">
+        @foreach (var item in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => item.Make) @Html.DisplayFor(modelItem => item.Model) <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </li>
+        }
+    </ul>
+</div>
+

@@ -1,0 +1,72 @@
+﻿@page "{id:int}"
+@model RazorPhones.Pages.phones.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    /*
+     * 4. Edit page (/phones/edit/[id]) that allows editing of the phone's data. Value for the [id] part of the url selects the
+        phone by it's Id property to be edited. Edit page renders input fields for all of the `Phone` class' properties and marks input
+        fields for properties Id, Created and Modified to readonly so user gets the indication that these fields should not be modified by the user.
+        The page must not contain any other fields for data input. Use `Phone` class as the bind property type and use `Phone` as the property's name.
+        Use `button` element as the submit button. POSTing the form makes the changes to the selected phone object and persists them to the database.
+        When the POST is successful the app redirects to /phones page to list all the phones including the changed phone.
+    */
+}
+
+<h1>Edit</h1>
+
+<h4>Phone</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+            <div class="form-group">
+                <label asp-for="Phone.Id" class="control-label"></label>
+                <input readonly asp-for="Phone.Id" class="form-control" />
+                <span asp-validation-for="Phone.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.Make" class="control-label"></label>
+                <input asp-for="Phone.Make" class="form-control" />
+                <span asp-validation-for="Phone.Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.Model" class="control-label"></label>
+                <input asp-for="Phone.Model" class="form-control" />
+                <span asp-validation-for="Phone.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.RAM" class="control-label"></label>
+                <input asp-for="Phone.RAM" class="form-control" />
+                <span asp-validation-for="Phone.RAM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.PublishDate" class="control-label"></label>
+                <input asp-for="Phone.PublishDate" class="form-control" />
+                <span asp-validation-for="Phone.PublishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.Created" class="control-label"></label>
+                <input readonly asp-for="Phone.Created" class="form-control" />
+                <span asp-validation-for="Phone.Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone.Modified" class="control-label"></label>
+                <input readonly asp-for="Phone.Modified" class="form-control" />
+                <span asp-validation-for="Phone.Modified" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <Button type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

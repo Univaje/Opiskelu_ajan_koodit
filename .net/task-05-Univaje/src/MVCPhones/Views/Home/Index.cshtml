@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVCPhones.Data.Phone>
+@{
+    ViewData["Title"] = "Home Page";
+    /*
+     * 1. Index view (/) that renders text: `Welcome to the Modern Phone database in MVC` in H1 tag and top 4 latest added or modified phones with all info
+        (all fields' data) in a HTML table element. Each property is in its own table cell. The table must contain a header row with the property names on columns.
+         The `Id` property is in the first column.
+    */
+    string greet = "Welcome to the Modern Phone database in MVC";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@greet</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id )</th>
+                <th>@Html.DisplayNameFor(model => model.Make)</th>
+                <th>@Html.DisplayNameFor(model => model.Model)</th>
+                <th>@Html.DisplayNameFor(model => model.RAM)</th>
+                <th>@Html.DisplayNameFor(model => model.PublishDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Created)</th>
+                <th>@Html.DisplayNameFor(model => model.Modified)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@Html.DisplayFor(modelItem => item.Make)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RAM)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PublishDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Modified)</td>
+                    <td><a asp-controller="phones" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a asp-controller="phones" asp-action="Delete" asp-route-id="@item.Id">Delete</a> </td>
+                </tr>
+            
+            }
+        </tbody>
+    </table>
+</div>
