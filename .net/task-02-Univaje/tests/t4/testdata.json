@@ -1,0 +1,17 @@
+{
+    "rectangle": [
+        {
+            "data": {
+                "Item1": 3.0,
+                "Item2": 8.0
+            },
+            "result": "Rectangle with width 3.00 and height 8.00 has area 24.00 and circumference 22.00"
+        }
+    ],
+    "circle": [
+        {
+            "data": 2.0,
+            "result": "Circle with radius 2.00 has area 12.57 and circumference 12.57"
+        }
+    ]
+}
