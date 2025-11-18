@@ -1,6 +1,7 @@
 # Opiskelu ajan koodit
+  
+  This is a collection of code snippets that survived when my computer broke.Theese are mostly course work and projects that I made in Savonia Appliend sciences courses
 
-**Opiskelu ajan koodit** is a collection of code snippets that survived when my computer broke.Theese are mostly course work and projects that I made in Savonia Appliend sciences courses
 ---
 
 ## 📂 Project structure
